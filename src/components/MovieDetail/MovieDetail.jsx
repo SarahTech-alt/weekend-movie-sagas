@@ -6,7 +6,7 @@ function MovieDetail() {
     const movieDetailsToDisplay = useSelector(store => store.selectedMovieDetails);
     // access movie genres from the store
     const movieGenresToDisplay = useSelector(store => store.selectedMovieGenres);
-        // access useHistory functionality for navigation
+    // access useHistory functionality for navigation
     const history = useHistory();
 
     return (
@@ -26,7 +26,7 @@ function MovieDetail() {
                             </div>
                         );
                     })}
-                     {/* map over selectedMovieGenres reducer
+                    {/* map over selectedMovieGenres reducer
                      for movie genre
                     and display on DOM */}
                     <p>Genre(s):</p>
@@ -34,7 +34,7 @@ function MovieDetail() {
                         return (
                             <div key={genre.id} >
                                 <p>{genre.name}</p>
-                                </div>
+                            </div>
                         );
                     })}
                 </section>

@@ -15,7 +15,7 @@ Be sure to do both parts!
 - [x] In home page make movie posters clickable, onClick dispatch movie id to getMovieDetails saga and navigate to MovieDetail page
 - [x] Make get request for the movie title, poster and description in fetchMovieDetails saga, dispatch to selectedMovieDetail reducer
 - [x] Make get request for the movie's genre(s) in getMovieGenre saga, dispatch response to selectedMovieGenre reducer
-- [ ] In MovieDetail page get information from the reducers and display on DOM
+- [x] In MovieDetail page get information from the reducers and display on DOM
 - [ ] Create AddMovie page and source it into app.js
 - [ ] In home page add an 'add' button that takes users to the AddMovie page
 - [ ] Create a form in AddMovie page that takes in title, url to a poster, description and a drop down selection for genre
