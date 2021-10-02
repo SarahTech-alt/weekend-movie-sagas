@@ -13,7 +13,7 @@ Be sure to do both parts!
 ## Task List for Base Mode
 - [x] Create MovieDetail component and source into app.js
 - [x] In home page make movie posters clickable, onClick dispatch movie id to getMovieDetails saga and navigate to MovieDetail page
-- [ ] Make get request for the movie title, poster and description in getMovieDetails saga, dispatch to selectedMovieDetail reducer
+- [ ] Make get request for the movie title, poster and description in fetchMovieDetails saga, dispatch to selectedMovieDetail reducer
 - [ ] Make get request for the movie's genre(s) in getMovieGenre saga, dispatch response to selectedMovieGenre reducer
 - [ ] In MovieDetail page get information from the reducers and display on DOM
 - [ ] Create AddMovie page and source it into app.js
