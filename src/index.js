@@ -14,6 +14,8 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+    yield takeEvery('FETCH_MOVIE_DETAIL', fetchMovieDetail)
+    yield takeEvery('FETCH_MOVIE_GENRE', fetchMovieGenre)
 }
 
 function* fetchAllMovies() {
@@ -26,8 +28,32 @@ function* fetchAllMovies() {
     } catch {
         console.log('get all error');
     }
-        
 }
+
+function* fetchMovieDetail() {
+    // get movie details from the DB
+    try {
+        const movieId = payload.id;
+        const movieDetails = yield axios.get(`/api/movie/${movieId}`)
+        yield put({ type: 'SET_MOVIE_DETAIL', payload: movieDetails.data })
+    } catch {
+        (error) =>
+            console.log('get details error', error);
+    }
+}
+
+function* fetchMovieGenre() {
+    // get movie genre from the DB
+    try {
+        const movieId = payload.id;
+        const movieDetails = yield axios.get(`/api/genre/${movieId}`)
+        yield put({ type: 'SET_MOVIE_GENRE', payload: movieDetails.data })
+    } catch {
+        (error) =>
+            console.log('get details error', error);
+    }
+}
+
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -36,6 +62,16 @@ const sagaMiddleware = createSagaMiddleware();
 const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+// Used to store the selected movie information
+const selectedMovieDetails = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_MOVIE_DETAIL':
             return action.payload;
         default:
             return state;
@@ -52,11 +88,23 @@ const genres = (state = [], action) => {
     }
 }
 
+// Used to store the selected movie genre(s)
+const selectedMovieGenres = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_MOVIE_GENRE':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        selectedMovieDetails,
+        selectedMovieGenres,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
@@ -68,7 +116,7 @@ sagaMiddleware.run(rootSaga);
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={storeInstance}>
-        <App />
+            <App />
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')
