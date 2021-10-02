@@ -12,7 +12,7 @@ function MovieList() {
 
     const sendMovieDetail = (movieId) => {
         dispatch({
-            type: 'FETCH_MOVIE_DETAIL', 
+            type: 'FETCH_MOVIE_DETAIL',
             payload: movieId
         })
         dispatch({
@@ -34,7 +34,7 @@ function MovieList() {
                     return (
                         <div key={movie.id} >
                             <h3>{movie.title}</h3>
-                            <img onClick={(event) => sendMovieDetail(movie.id)} src={movie.poster} alt={movie.title}/>
+                            <img onClick={(event) => sendMovieDetail(movie.id)} src={movie.poster} alt={movie.title} />
                         </div>
                     );
                 })}
