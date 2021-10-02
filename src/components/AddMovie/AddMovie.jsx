@@ -12,6 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { positions } from '@mui/system';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -29,11 +30,18 @@ function AddMovie() {
     };
 
 
-    const [movieTitle, setMovieTitle] = useState(' ');
-    const [movieUrl, setMovieUrl] = useState('');
-    const [movieDescription, setMovieDescription] = useState(' ');
+    const genres = ['Adventure', 'Animated',  'Biographical', 'Comedy', 'Disaster', 'Drama', 'Epic', 'Fantasy', 'Musical', 'Romantic', 'Science Fiction', 'Space-Opera', 'Superhero'];
+    
+    const history = useHistory();
+
+    const [movieToAdd, setMovieToAdd] = useState({
+        movieTitle: '',
+        movieUrl: '',
+        movieDescription: '',
+    })
+ 
     const [movieGenre, setMovieGenre] = useState([]);
-    const genres = ['Animated', 'Biographical'];
+  
 
     const handleChange = (event) => {
         const {
@@ -58,8 +66,8 @@ function AddMovie() {
                             required
                             id="movie-title-input"
                             label="Title"
-                            onChange={(event) => setMovieTitle(event.target.value)}
-                            value={movieTitle}
+                            onChange={(event) => setMovieToAdd({...movieToAdd, movieTitle: event.target.value})}
+                            value={movieToAdd.movieTitle}
                         />
                         <TextField
                             required
@@ -67,14 +75,14 @@ function AddMovie() {
                             label="Description"
                             multiline
                             minRows={4}
-                            onChange={(event) => setMovieDescription(event.target.value)}
-                            value={movieDescription}
+                            onChange={(event) => setMovieToAdd({...movieToAdd, movieDescription: event.target.value})}
+                            value={movieToAdd.movieDescription}
                         />
                         <TextField
                             id="poster-url-input"
                             label="Poster URL"
-                            onChange={(event) => setMovieUrl(event.target.value)}
-                            value={movieUrl}
+                            onChange={(event) => setMovieToAdd({...movieToAdd, movieUrl: event.target.value})}
+                            value={movieToAdd.movieUrl}
                         />
                     </FormControl>
                 </div>
@@ -100,11 +108,8 @@ function AddMovie() {
                         </Select>
                     </FormControl>
                 </div>
-                
-                
-                <Button variant="contained" sx= {{ m: 1, position: 'justify' }}>Cancel</Button>
+                <Button onClick={(event) => history.push('/')} variant="contained" sx= {{ m: 1, position: 'justify' }}>Cancel</Button>
                 <Button variant="contained" sx ={{ m:1, position: 'justify' }}>Add Movie</Button>
-               
         </Box>
     );
 }
