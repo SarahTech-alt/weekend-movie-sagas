@@ -10,6 +10,18 @@ function MovieList() {
     // access useHistory functionality for navigation
     const history = useHistory();
 
+    const sendMovieDetail = (movieId) => {
+        dispatch({
+            type: 'FETCH_MOVIE_DETAIL', 
+            payload: movieId
+        })
+        dispatch({
+            type: 'FETCH_MOVIE_GENRE',
+            payload: movieId
+        })
+        history.push('/detail');
+    }
+
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
@@ -22,7 +34,7 @@ function MovieList() {
                     return (
                         <div key={movie.id} >
                             <h3>{movie.title}</h3>
-                            <img onClick={(event) => history.push('/detail')} src={movie.poster} alt={movie.title}/>
+                            <img onClick={(event) => sendMovieDetail(movie.id)} src={movie.poster} alt={movie.title}/>
                         </div>
                     );
                 })}

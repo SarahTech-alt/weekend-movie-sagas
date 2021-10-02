@@ -29,7 +29,7 @@ function* fetchAllMovies() {
     }    
 }
 
-function fetchMovieDetail() {
+function* fetchMovieDetail() {
     // get movie details from the DB
     try {
         const movieId = payload.id;
