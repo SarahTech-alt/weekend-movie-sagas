@@ -16,6 +16,8 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_MOVIE_DETAIL', fetchMovieDetail)
     yield takeEvery('FETCH_MOVIE_GENRE', fetchMovieGenre)
+    yield takeEvery('ADD_NEW_MOVIE', addNewMovieDetails)
+    yield takeEvery('ADD_NEW_MOVIE_GENRE', addNewMovieGenres)
 }
 
 function* fetchAllMovies() {
@@ -24,7 +26,6 @@ function* fetchAllMovies() {
         const movies = yield axios.get('/api/movie');
         console.log('get all:', movies.data);
         yield put({ type: 'SET_MOVIES', payload: movies.data });
-
     } catch {
         console.log('get all error');
     }
@@ -51,6 +52,33 @@ function* fetchMovieGenre(action) {
     } catch {
         (error) =>
             console.log('get details error', error);
+    }
+}
+
+function* addNewMovieDetails(action) {
+    try {
+        console.log(action);
+        const movieInfo = action.payload;
+        console.log(movieInfo);
+        // const movieInfoToAdd = yield axios.post('/api/movie/addMovie')
+        yield put({ type: 'FETCH_MOVIES' })
+    } catch {
+        (error) =>
+        console.log('error posting new movie', error)
+    }
+}
+
+function* addNewMovieGenres(action) {
+    try {
+        const genres = action.payload;
+        for (genre of genres){
+            console.log(genre);
+            // yield axios.post(`api/genre/addGenre/${genre}`)
+            yield put({ type: 'FETCH_MOVIES' })
+        }
+    } catch {
+        (error) =>
+        console.log('error posting movie genres', error)
     }
 }
 

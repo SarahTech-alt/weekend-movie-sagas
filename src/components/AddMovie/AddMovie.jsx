@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -11,9 +11,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-
-
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function AddMovie() {
@@ -28,22 +26,23 @@ function AddMovie() {
             },
         },
     };
-
-
+  
+    // All available genres of movies in the database
     const genres = ['Adventure', 'Animated',  'Biographical', 'Comedy', 'Disaster', 'Drama', 'Epic', 'Fantasy', 'Musical', 'Romantic', 'Science Fiction', 'Space-Opera', 'Superhero'];
 
      // access useHistory functionality for navigation
      const history = useHistory();
      // access useDispatch functionality to dispatch actions to sagas
     const dispatch = useDispatch();
+  
 
+    // Create a movieToAdd variable to hold inputs and send to the saga
     const [movieToAdd, setMovieToAdd] = useState({
         movieTitle: '',
         movieUrl: '',
         movieDescription: '',
+        genres: [],
     })
- 
-    const [movieGenre, setMovieGenre] = useState([]);
   
     // Gets the value of selected items
     // separates them by comma and sets to movieGenre array
@@ -51,25 +50,27 @@ function AddMovie() {
         const {
           target: { value },
         } = event;
-        setMovieGenre(
+        setMovieToAdd({...movieToAdd, genres:
           // On autofill we get a the stringified value.
           typeof value === 'string' ? value.split(',') : value,
-        );
+        });
       };
+
       // Dispatch inputted movie information to the addNewMovie saga
       // and selected genres to addNewMovieGenres saga
       const postMovie = () => {
-          console.log(movieToAdd);
-          console.log(movieGenre);
+        //   console.log('Future Id', movieToAddId);
+        //   console.log('Existing Movies', currentMovies);
+         console.log('movie to add', movieToAdd);
           dispatch({
             type: 'ADD_NEW_MOVIE',
             payload: movieToAdd
         })
         dispatch({
             type: 'ADD_NEW_MOVIE_GENRE',
-            payload: movieGenre
+            payload: movieToAdd
         })
-      }
+    }
 
     return (
             <Box component="form"
@@ -111,7 +112,7 @@ function AddMovie() {
                             labelId="genre-multiple-checkbox-label"
                             id="genre-checkbox"
                             multiple
-                            value={movieGenre}
+                            value={movieToAdd.genres}
                             onChange={handleChange}
                             input={<OutlinedInput label="Genre" />}
                             renderValue={(selected) => selected.join(', ')}
@@ -119,7 +120,7 @@ function AddMovie() {
                         >
                             {genres.map((genre) => (
                                 <MenuItem key={genre} value={genre}>
-                                    <Checkbox checked={movieGenre.indexOf(genre) > -1} />
+                                    <Checkbox checked={movieToAdd.genres.indexOf(genre) > -1} />
                                     <ListItemText primary={genre} />
                                 </MenuItem>
                             ))}
