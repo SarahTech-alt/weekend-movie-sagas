@@ -10,9 +10,9 @@ import Checkbox from '@mui/material/Checkbox';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import { positions } from '@mui/system';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 
 
 
@@ -32,7 +32,10 @@ function AddMovie() {
 
     const genres = ['Adventure', 'Animated',  'Biographical', 'Comedy', 'Disaster', 'Drama', 'Epic', 'Fantasy', 'Musical', 'Romantic', 'Science Fiction', 'Space-Opera', 'Superhero'];
 
-    const history = useHistory();
+     // access useHistory functionality for navigation
+     const history = useHistory();
+     // access useDispatch functionality to dispatch actions to sagas
+    const dispatch = useDispatch();
 
     const [movieToAdd, setMovieToAdd] = useState({
         movieTitle: '',
@@ -42,7 +45,8 @@ function AddMovie() {
  
     const [movieGenre, setMovieGenre] = useState([]);
   
-
+    // Gets the value of selected items
+    // separates them by comma and sets to movieGenre array
     const handleChange = (event) => {
         const {
           target: { value },
@@ -52,10 +56,19 @@ function AddMovie() {
           typeof value === 'string' ? value.split(',') : value,
         );
       };
-
+      // Dispatch inputted movie information to the addNewMovie saga
+      // and selected genres to addNewMovieGenres saga
       const postMovie = () => {
           console.log(movieToAdd);
           console.log(movieGenre);
+          dispatch({
+            type: 'ADD_NEW_MOVIE',
+            payload: movieToAdd
+        })
+        dispatch({
+            type: 'ADD_NEW_MOVIE_GENRE',
+            payload: movieGenre
+        })
       }
 
     return (
