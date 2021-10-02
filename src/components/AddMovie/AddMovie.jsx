@@ -31,7 +31,7 @@ function AddMovie() {
 
 
     const genres = ['Adventure', 'Animated',  'Biographical', 'Comedy', 'Disaster', 'Drama', 'Epic', 'Fantasy', 'Musical', 'Romantic', 'Science Fiction', 'Space-Opera', 'Superhero'];
-    
+
     const history = useHistory();
 
     const [movieToAdd, setMovieToAdd] = useState({
@@ -52,6 +52,11 @@ function AddMovie() {
           typeof value === 'string' ? value.split(',') : value,
         );
       };
+
+      const postMovie = () => {
+          console.log(movieToAdd);
+          console.log(movieGenre);
+      }
 
     return (
             <Box component="form"
@@ -109,7 +114,7 @@ function AddMovie() {
                     </FormControl>
                 </div>
                 <Button onClick={(event) => history.push('/')} variant="contained" sx= {{ m: 1, position: 'justify' }}>Cancel</Button>
-                <Button variant="contained" sx ={{ m:1, position: 'justify' }}>Add Movie</Button>
+                <Button onClick={(event) => postMovie()}variant="contained" sx ={{ m:1, position: 'justify' }}>Add Movie</Button>
         </Box>
     );
 }
