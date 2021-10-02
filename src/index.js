@@ -27,7 +27,7 @@ function* fetchAllMovies() {
 
     } catch {
         console.log('get all error');
-    }    
+    }
 }
 
 function* fetchMovieDetail() {
@@ -35,22 +35,25 @@ function* fetchMovieDetail() {
     try {
         const movieId = payload.id;
         const movieDetails = yield axios.get(`/api/movie/${movieId}`)
-        yield put({type: 'SET_MOVIE_DETAIL', payload: movieDetails.data})
-    } catch {(error) =>
-        console.log('get details error', error);
+        yield put({ type: 'SET_MOVIE_DETAIL', payload: movieDetails.data })
+    } catch {
+        (error) =>
+            console.log('get details error', error);
     }
 }
 
-function fetchMovieGenre() {
+function* fetchMovieGenre() {
     // get movie genre from the DB
     try {
         const movieId = payload.id;
         const movieDetails = yield axios.get(`/api/genre/${movieId}`)
-        yield put({type: 'SET_MOVIE_GENRE', payload: movieDetails.data})
-    } catch {(error) =>
-        console.log('get details error', error);
+        yield put({ type: 'SET_MOVIE_GENRE', payload: movieDetails.data })
+    } catch {
+        (error) =>
+            console.log('get details error', error);
     }
 }
+
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -59,6 +62,15 @@ const sagaMiddleware = createSagaMiddleware();
 const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+const selectedMovieDetails = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_MOVIE_DETAIL':
             return action.payload;
         default:
             return state;
@@ -80,6 +92,7 @@ const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        selectedMovieDetails,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
@@ -91,7 +104,7 @@ sagaMiddleware.run(rootSaga);
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={storeInstance}>
-        <App />
+            <App />
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')
