@@ -30,10 +30,10 @@ function* fetchAllMovies() {
     }
 }
 
-function* fetchMovieDetail() {
+function* fetchMovieDetail(action) {
     // get movie details from the DB
     try {
-        const movieId = payload.id;
+        const movieId = action.payload;
         const movieDetails = yield axios.get(`/api/movie/${movieId}`)
         yield put({ type: 'SET_MOVIE_DETAIL', payload: movieDetails.data })
     } catch {
@@ -42,10 +42,10 @@ function* fetchMovieDetail() {
     }
 }
 
-function* fetchMovieGenre() {
+function* fetchMovieGenre(action) {
     // get movie genre from the DB
     try {
-        const movieId = payload.id;
+        const movieId = action.payload;
         const movieDetails = yield axios.get(`/api/genre/${movieId}`)
         yield put({ type: 'SET_MOVIE_GENRE', payload: movieDetails.data })
     } catch {
