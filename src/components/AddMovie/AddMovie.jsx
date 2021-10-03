@@ -64,7 +64,7 @@ function AddMovie() {
             shows user what page they are on and has link
              to take users to movie list page */}
         <div className="navigation">
-        <Breadcrumbs aria-label="breadcrumb">
+        <Breadcrumbs sx={{ pl:'2%' }} aria-label="breadcrumb">
                     <Link underline="hover" 
                     color="inherit" 
                     onClick={event => history.push('/')}>

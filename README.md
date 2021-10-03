@@ -31,7 +31,7 @@ Material UI https://mui.com/getting-started/usage/
 6. The npm run client command will open up a new browser for you!
 
 ## Screenshots
-![home page](wireframes/Homepage.png)
-![movie details](wireframes/MovieDetails)
-![add movie](wirefreames/AddMovie)
+![home page](wireframes/Home.png)
+![movie details](wireframes/Details.png)
+![add movie](wireframes/Add.png)
 
