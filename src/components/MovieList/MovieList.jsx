@@ -2,15 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import { useHistory } from 'react-router-dom';
-import Card from '@mui/material/Card';
-import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Grid from '@mui/material/Grid';
 
 function MovieList() {
 
@@ -36,7 +33,7 @@ function MovieList() {
     }, []);
 
     return (
-        <main>
+        <main className="MovieList">
             <section className="movies">
                 <div className="navigation">
                 <Breadcrumbs aria-label="breadcrumb">
@@ -54,32 +51,25 @@ function MovieList() {
                     </Link>
                 </Breadcrumbs>
                 </div>
-                <ImageList sx={{ width: '100%', height: 500 }} container spacing={8} gap={15} cols={5}  >
+                <ImageList container spacing={8} gap={15} cols={5} >
                     {movies.map((movie) => (
-
                         <ImageListItem key={movie.poster}>
                             <img
-                                src={`${movie.poster}?w=248&fit=crop&auto=format`}
-                                srcSet={`${movie.poster}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                src={movie.poster}
+                                srcSet={movie.poster}
                                 alt={movie.title}
                                 loading="lazy"
                                 onClick={event=>sendMovieDetail(movie.id)}
                             />
-
                             <ImageListItemBar
                                 title={movie.title}
                                 position="below"
                             />
-
                         </ImageListItem>
-
                     ))}
                 </ImageList>
-
-
             </section>
         </main>
-
     );
 }
 

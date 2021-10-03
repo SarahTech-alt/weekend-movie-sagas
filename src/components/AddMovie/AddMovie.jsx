@@ -13,6 +13,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 
+
 function AddMovie() {
 
     // const ITEM_HEIGHT = 48;
@@ -70,7 +71,7 @@ function AddMovie() {
     }
 
     return (
-        <>
+        <Box >
         <div className="navigation">
         <Breadcrumbs aria-label="breadcrumb">
                     <Link underline="hover" 
@@ -90,12 +91,13 @@ function AddMovie() {
                 <br />
         <Box component="form"
             sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
+                '& .MuiTextField-root': { m: 1, width: '15rem' },
+                color: 'text.primary' 
             }}
             noValidate
             autoComplete="off">
-            <div>
-                <FormControl>
+            <div className="addMovie">
+                <FormControl >
                     <h2>Add Movie:</h2>
                     <TextField
                         required
@@ -122,7 +124,7 @@ function AddMovie() {
                 </FormControl>
             </div>
             <div>
-                <FormControl sx={{ m: 1, width: '25ch' }}>
+                <FormControl sx={{ m: 1, width: '15rem' }}>
                     <InputLabel id="genre-select-label">Genre</InputLabel>
                     <Select
                         labelId="genre-simple-select-label"
@@ -150,7 +152,7 @@ function AddMovie() {
             <Button onClick={(event) => history.push('/')} variant="contained" sx={{ m: 1, position: 'justify' }}>Cancel</Button>
             <Button onClick={(event) => postMovie()} variant="contained" sx={{ m: 1, position: 'justify' }}>Add Movie</Button>
         </Box>
-        </>
+        </Box>
     );
 }
 
