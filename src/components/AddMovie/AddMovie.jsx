@@ -15,18 +15,7 @@ import { useDispatch } from 'react-redux';
 
 
 function AddMovie() {
-
-    // const ITEM_HEIGHT = 48;
-    // const ITEM_PADDING_TOP = 8;
-    // const MenuProps = {
-    //     PaperProps: {
-    //         style: {
-    //             maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-    //             width: 250,
-    //         },
-    //     },
-    // };
-
+    
     // All available genres of movies in the database
     const genres = {
         Adventure: 1,
@@ -61,7 +50,6 @@ function AddMovie() {
     // Dispatch inputted movie information to the addNewMovie saga
     // and selected genres to addNewMovieGenres saga
     const postMovie = () => {
-
         console.log('movie to add', movieToAdd);
         dispatch({
             type: 'ADD_NEW_MOVIE',
@@ -72,6 +60,9 @@ function AddMovie() {
 
     return (
         <Box >
+            {/* Navigation section
+            shows user what page they are on and has link
+             to take users to movie list page */}
         <div className="navigation">
         <Breadcrumbs aria-label="breadcrumb">
                     <Link underline="hover" 
@@ -89,6 +80,10 @@ function AddMovie() {
                 </Breadcrumbs>
                 </div>
                 <br />
+                {/* Form for users to input data for new movie 
+                Title and description are required
+                When the form is submitted the movieToAdd
+                variable is updated with form input values*/}
         <Box component="form"
             sx={{
                 '& .MuiTextField-root': { m: 1, width: '15rem' },
@@ -149,7 +144,10 @@ function AddMovie() {
                     </Select>
                 </FormControl>
             </div>
+            {/* Cancel button navigates user back to movie list page */}
             <Button onClick={(event) => history.push('/')} variant="contained" sx={{ m: 1, position: 'justify' }}>Cancel</Button>
+            {/* Submit button calls the postMovie function
+            to send to the the saga */}
             <Button onClick={(event) => postMovie()} variant="contained" sx={{ m: 1, position: 'justify' }}>Add Movie</Button>
         </Box>
         </Box>

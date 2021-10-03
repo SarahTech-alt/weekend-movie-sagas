@@ -7,15 +7,19 @@ import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 
 function MovieDetail() {
-    // access movie details from the store
+    // useSelector allows access to movie details from the store
+    // accessing to reducers so have two selectors
     const movieDetailsToDisplay = useSelector(store => store.selectedMovieDetails);
-    // access movie genres from the store
     const movieGenresToDisplay = useSelector(store => store.selectedMovieGenres);
     // access useHistory functionality for navigation
     const history = useHistory();
 
     return (
         <>
+        {/* Navigation section
+            shows user what page they are on and has links
+            to take users back to movie list and
+             one to take users to add movie page */}
             <div className="navigation">
                 <Breadcrumbs aria-label="breadcrumb">
                     <Link underline="hover"
@@ -39,8 +43,7 @@ function MovieDetail() {
                     </Link>
                 </Breadcrumbs>
             </div><br />
-            {/* <p>{JSON.stringify(movieDetailsToDisplay)}</p> */}
-
+            {/* Create a grid to put mapped items into */}
             <Grid container justify="center"
                 spacing={0}
                 direction="column"
@@ -77,7 +80,6 @@ function MovieDetail() {
                             })}
                         </Grid>
                     </section>
-
                 </Card>
             </Grid>
         </>
