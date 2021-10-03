@@ -7,8 +7,11 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
 
 
 function AddMovie() {
@@ -68,14 +71,34 @@ function AddMovie() {
     }
 
     return (
+        <Box >
+        <div className="navigation">
+        <Breadcrumbs aria-label="breadcrumb">
+                    <Link underline="hover" 
+                    color="inherit" 
+                    onClick={event => history.push('/')}>
+                        Movie List
+                    </Link>
+                    <Link
+                        underline="hover"
+                        color="inherit"
+                        onClick={event => history.push('/add')}
+                    >
+                        Add Movie
+                    </Link>
+                </Breadcrumbs>
+                </div>
+                <br />
         <Box component="form"
             sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
+                '& .MuiTextField-root': { m: 1, width: '15rem' },
+                color: 'text.primary' 
             }}
             noValidate
             autoComplete="off">
-            <div>
-                <FormControl>
+            <div className="addMovie">
+                <FormControl >
+                    <h2>Add Movie:</h2>
                     <TextField
                         required
                         id="movie-title-input"
@@ -101,7 +124,7 @@ function AddMovie() {
                 </FormControl>
             </div>
             <div>
-                <FormControl sx={{ m: 1, width: '25ch' }}>
+                <FormControl sx={{ m: 1, width: '15rem' }}>
                     <InputLabel id="genre-select-label">Genre</InputLabel>
                     <Select
                         labelId="genre-simple-select-label"
@@ -128,6 +151,7 @@ function AddMovie() {
             </div>
             <Button onClick={(event) => history.push('/')} variant="contained" sx={{ m: 1, position: 'justify' }}>Cancel</Button>
             <Button onClick={(event) => postMovie()} variant="contained" sx={{ m: 1, position: 'justify' }}>Add Movie</Button>
+        </Box>
         </Box>
     );
 }

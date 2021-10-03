@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+img:hover {
+  cursor:pointer
+}
+
+img {
+  height: 10em;
+}
 
 .App-header {
   background-color: #222;
