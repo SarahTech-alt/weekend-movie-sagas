@@ -21,7 +21,7 @@ function MovieDetail() {
             to take users back to movie list and
              one to take users to add movie page */}
             <div className="navigation">
-                <Breadcrumbs aria-label="breadcrumb">
+                <Breadcrumbs sx={{ pl:'2%' }} aria-label="breadcrumb">
                     <Link underline="hover"
                         color="inherit"
                         onClick={event => history.push('/')}>
@@ -44,7 +44,7 @@ function MovieDetail() {
                 </Breadcrumbs>
             </div><br />
             {/* Create a grid to put mapped items into */}
-            <Grid container justify="center"
+            <Grid container 
                 spacing={0}
                 direction="column"
                 alignItems="center"

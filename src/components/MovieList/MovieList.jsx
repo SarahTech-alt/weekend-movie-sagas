@@ -7,6 +7,7 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Grid from '@mui/material/Grid';
 
 function MovieList() {
     // dispatch allows actions to be sent to sagas
@@ -40,7 +41,7 @@ function MovieList() {
             shows user what page they are on and has link
              to take users to add movie page */}
             <div className="navigation">
-                <Breadcrumbs aria-label="breadcrumb">
+                <Breadcrumbs sx={{ pl:'2%' }} aria-label="breadcrumb">
                     <Link underline="hover"
                         color="inherit" >
                         Movie List
@@ -56,7 +57,10 @@ function MovieList() {
             </div>
             {/* Maps over all the items in the movies array
                 that was accessed on page load */}
-            <ImageList spacing={8} gap={15} cols={5} >
+                <Grid container justify="center" alignItems="center">
+            <ImageList 
+            gap={15} cols={3}
+            sx={{m:1, width:'75%', pl:'8%', pt:'2%'}}>
                 {movies.map((movie) => (
                     <ImageListItem key={movie.id}>
                         <img
@@ -73,6 +77,7 @@ function MovieList() {
                     </ImageListItem>
                 ))}
             </ImageList>
+            </Grid>
         </main>
     );
 }
