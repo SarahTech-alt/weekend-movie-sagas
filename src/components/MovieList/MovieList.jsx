@@ -7,7 +7,6 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Grid from '@mui/material/Grid';
 
 function MovieList() {
 
@@ -34,17 +33,6 @@ function MovieList() {
 
     return (
         <main className="MovieList">
-            <section className="movies">
-
-                {movies.map(movie => {
-                    return (
-                        <div key={movie.id} >
-                            <h3>{movie.title}</h3>
-                            <img onClick={(event) => sendMovieDetail(movie.id)} src={movie.poster} alt={movie.title} />
-                        </div>
-                    );
-                })}
-
                 <div className="navigation">
                 <Breadcrumbs aria-label="breadcrumb">
                     <Link underline="hover" 
@@ -79,8 +67,7 @@ function MovieList() {
                         </ImageListItem>
                     ))}
                 </ImageList>
-            </section>
-        </main>
+            </main>
     );
 }
 
