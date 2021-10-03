@@ -16,11 +16,11 @@ Be sure to do both parts!
 - [x] Make get request for the movie title, poster and description in fetchMovieDetails saga, dispatch to selectedMovieDetail reducer
 - [x] Make get request for the movie's genre(s) in getMovieGenre saga, dispatch response to selectedMovieGenre reducer
 - [x] In MovieDetail page get information from the reducers and display on DOM
-- [ ] Create AddMovie page and source it into app.js
+- [x] Create AddMovie page and source it into app.js
 - [ ] In home page add an 'add' button that takes users to the AddMovie page
-- [ ] Create a form in AddMovie page that takes in title, url to a poster, description and a drop down selection for genre
-- [ ] In AddMovie page make a 'Cancel' button that navigates the user back to the home page
-- [ ] In AddMovie page make a 'Add Movie' button that dispatches the form information to the AddMovieDetails saga
+- [x] Create a form in AddMovie page that takes in title, url to a poster, description and a drop down selection for genre
+- [x] In AddMovie page make a 'Cancel' button that navigates the user back to the home page
+- [x] In AddMovie page make a 'Add Movie' button that dispatches the form information to the AddMovieDetails saga
 - [ ] Create AddMovieDetails saga that sends a POST request to sends the title, url and description to movie router
 - [ ] Create AddMovieGenre saga that sends a POST request to send the movie genre to the genre router
 
