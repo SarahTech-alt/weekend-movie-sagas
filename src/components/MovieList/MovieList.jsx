@@ -2,6 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import { useHistory } from 'react-router-dom';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import Link from '@mui/material/Link';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Grid from '@mui/material/Grid';
 
 function MovieList() {
 
@@ -27,10 +33,9 @@ function MovieList() {
     }, []);
 
     return (
-        <main>
-            <h1>MovieList</h1>
+        <main className="MovieList">
             <section className="movies">
-<<<<<<< Updated upstream
+
                 {movies.map(movie => {
                     return (
                         <div key={movie.id} >
@@ -39,7 +44,7 @@ function MovieList() {
                         </div>
                     );
                 })}
-=======
+
                 <div className="navigation">
                 <Breadcrumbs aria-label="breadcrumb">
                     <Link underline="hover" 
@@ -59,6 +64,7 @@ function MovieList() {
                 <ImageList spacing={8} gap={15} cols={5} >
                     {movies.map((movie) => (
                         <ImageListItem key={movie.id}>
+
                             <img
                                 src={movie.poster}
                                 srcSet={movie.poster}
@@ -73,10 +79,8 @@ function MovieList() {
                         </ImageListItem>
                     ))}
                 </ImageList>
->>>>>>> Stashed changes
             </section>
         </main>
-
     );
 }
 
