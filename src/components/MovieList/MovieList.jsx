@@ -2,6 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import { useHistory } from 'react-router-dom';
+import Card from '@mui/material/Card';
+import Box from '@mui/material/Box';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
 
 function MovieList() {
 
@@ -30,14 +35,25 @@ function MovieList() {
         <main>
             <h1>MovieList</h1>
             <section className="movies">
-                {movies.map(movie => {
-                    return (
-                        <div key={movie.id} >
-                            <h3>{movie.title}</h3>
-                            <img onClick={(event) => sendMovieDetail(movie.id)} src={movie.poster} alt={movie.title} />
-                        </div>
-                    );
-                })}
+                
+                <ImageList >
+                    {movies.map((movie) => (
+                        <ImageListItem key={movie.id}>
+                            <img
+                                src={`${movie.poster}?w=248&fit=crop&auto=format`}
+                                srcSet={`${movie.poster}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                alt={movie.title}
+                                loading="lazy"
+                                onClick = {(event) => sendMovieDetail(movie.id)}
+                            />
+                            <ImageListItemBar
+                                title={movie.title}
+                                position="below"
+                            />
+                        </ImageListItem>
+                    ))}
+                </ImageList>
+            
             </section>
         </main>
 
