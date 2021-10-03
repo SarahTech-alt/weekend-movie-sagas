@@ -35,6 +35,16 @@ function MovieList() {
     return (
         <main className="MovieList">
             <section className="movies">
+
+                {movies.map(movie => {
+                    return (
+                        <div key={movie.id} >
+                            <h3>{movie.title}</h3>
+                            <img onClick={(event) => sendMovieDetail(movie.id)} src={movie.poster} alt={movie.title} />
+                        </div>
+                    );
+                })}
+
                 <div className="navigation">
                 <Breadcrumbs aria-label="breadcrumb">
                     <Link underline="hover" 
@@ -51,9 +61,10 @@ function MovieList() {
                     </Link>
                 </Breadcrumbs>
                 </div>
-                <ImageList container spacing={8} gap={15} cols={5} >
+                <ImageList spacing={8} gap={15} cols={5} >
                     {movies.map((movie) => (
-                        <ImageListItem key={movie.poster}>
+                        <ImageListItem key={movie.id}>
+
                             <img
                                 src={movie.poster}
                                 srcSet={movie.poster}

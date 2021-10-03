@@ -59,7 +59,7 @@ function* addNewMovieDetails(action) {
         console.log(action);
         const movieInfo = action.payload;
         console.log(movieInfo);
-        // const movieInfoToAdd = yield axios.post('/api/movie/addMovie')
+        yield axios.post('/api/movie', movieInfo)
         yield put({ type: 'FETCH_MOVIES' })
     } catch {
         (error) =>
@@ -67,19 +67,6 @@ function* addNewMovieDetails(action) {
     }
 }
 
-// function* addNewMovieGenres(action) {
-//     try {
-//         const genres = action.payload;
-//         for (genre of genres){
-//             console.log(genre);
-//             // yield axios.post(`api/genre/addGenre/${genre}`)
-//             yield put({ type: 'FETCH_MOVIES' })
-//         }
-//     } catch {
-//         (error) =>
-//         console.log('error posting movie genres', error)
-//     }
-// }
 
 
 // Create sagaMiddleware
