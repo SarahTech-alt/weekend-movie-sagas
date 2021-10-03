@@ -30,6 +30,7 @@ function MovieList() {
         <main>
             <h1>MovieList</h1>
             <section className="movies">
+<<<<<<< Updated upstream
                 {movies.map(movie => {
                     return (
                         <div key={movie.id} >
@@ -38,6 +39,41 @@ function MovieList() {
                         </div>
                     );
                 })}
+=======
+                <div className="navigation">
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Link underline="hover" 
+                    color="inherit" 
+                    onClick={event => history.push('/')}>
+                        Movie List
+                    </Link>
+                    <Link
+                        underline="hover"
+                        color="inherit"
+                        onClick={event => history.push('/add')}
+                    >
+                        Add Movie
+                    </Link>
+                </Breadcrumbs>
+                </div>
+                <ImageList spacing={8} gap={15} cols={5} >
+                    {movies.map((movie) => (
+                        <ImageListItem key={movie.id}>
+                            <img
+                                src={movie.poster}
+                                srcSet={movie.poster}
+                                alt={movie.title}
+                                loading="lazy"
+                                onClick={event=>sendMovieDetail(movie.id)}
+                            />
+                            <ImageListItemBar
+                                title={movie.title}
+                                position="below"
+                            />
+                        </ImageListItem>
+                    ))}
+                </ImageList>
+>>>>>>> Stashed changes
             </section>
         </main>
 
