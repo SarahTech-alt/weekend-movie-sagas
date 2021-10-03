@@ -9,12 +9,14 @@ import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 
 function MovieList() {
-
+    // dispatch allows actions to be sent to sagas
     const dispatch = useDispatch();
+    // useSelector allows access to redux store
     const movies = useSelector(store => store.movies);
     // access useHistory functionality for navigation
     const history = useHistory();
 
+    // Sends information of clicked photo to sagas
     const sendMovieDetail = (movieId) => {
         dispatch({
             type: 'FETCH_MOVIE_DETAIL',
@@ -27,17 +29,20 @@ function MovieList() {
         history.push('/detail');
     }
 
+    // On page load get all movies
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
 
     return (
         <main className="MovieList">
-                <div className="navigation">
+            {/* Navigation section
+            shows user what page they are on and has link
+             to take users to add movie page */}
+            <div className="navigation">
                 <Breadcrumbs aria-label="breadcrumb">
-                    <Link underline="hover" 
-                    color="inherit" 
-                    onClick={event => history.push('/')}>
+                    <Link underline="hover"
+                        color="inherit" >
                         Movie List
                     </Link>
                     <Link
@@ -48,26 +53,27 @@ function MovieList() {
                         Add Movie
                     </Link>
                 </Breadcrumbs>
-                </div>
-                <ImageList spacing={8} gap={15} cols={5} >
-                    {movies.map((movie) => (
-                        <ImageListItem key={movie.id}>
-
-                            <img
-                                src={movie.poster}
-                                srcSet={movie.poster}
-                                alt={movie.title}
-                                loading="lazy"
-                                onClick={event=>sendMovieDetail(movie.id)}
-                            />
-                            <ImageListItemBar
-                                title={movie.title}
-                                position="below"
-                            />
-                        </ImageListItem>
-                    ))}
-                </ImageList>
-            </main>
+            </div>
+            {/* Maps over all the items in the movies array
+                that was accessed on page load */}
+            <ImageList spacing={8} gap={15} cols={5} >
+                {movies.map((movie) => (
+                    <ImageListItem key={movie.id}>
+                        <img
+                            src={movie.poster}
+                            srcSet={movie.poster}
+                            alt={movie.title}
+                            loading="lazy"
+                            onClick={event => sendMovieDetail(movie.id)}
+                        />
+                        <ImageListItemBar
+                            title={movie.title}
+                            position="below"
+                        />
+                    </ImageListItem>
+                ))}
+            </ImageList>
+        </main>
     );
 }
 
