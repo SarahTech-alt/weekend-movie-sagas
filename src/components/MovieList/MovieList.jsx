@@ -60,7 +60,7 @@ function MovieList() {
                 <Grid container justify="center" alignItems="center">
             <ImageList 
             gap={15} cols={3}
-            sx={{m:1, width:'75%', pl:'8%', pt:'2%'}}>
+            sx={{m:1, width:'50%', pl:'25%', pt:'2%'}}>
                 {movies.map((movie) => (
                     <ImageListItem key={movie.id}>
                         <img
