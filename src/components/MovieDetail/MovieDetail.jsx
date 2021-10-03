@@ -1,5 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Link from '@mui/material/Link';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 
 function MovieDetail() {
     // access movie details from the store
@@ -12,6 +14,22 @@ function MovieDetail() {
     return (
         <>
             <main>
+                <div className="navigation">
+                    <Breadcrumbs aria-label="breadcrumb">
+                        <Link underline="hover"
+                            color="inherit"
+                            onClick={event => history.push('/')}>
+                            Movie List
+                        </Link>
+                        <Link
+                            underline="hover"
+                            color="inherit"
+                            onClick={event => history.push('/add')}
+                        >
+                            Add Movie
+                        </Link>
+                    </Breadcrumbs>
+                </div>
                 {/* <p>{JSON.stringify(movieDetailsToDisplay)}</p> */}
                 <section className="detail">
                     {/* map over selectedMovieDetails reducer
@@ -38,8 +56,6 @@ function MovieDetail() {
                         );
                     })}
                 </section>
-                {/* Button to go back to movie list */}
-                <button onClick={(event) => history.push('/')}>Go Back</button>
             </main>
         </>
     );
