@@ -11,6 +11,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import './AddMovie.css';
 
 
 
@@ -84,7 +85,7 @@ function AddMovie() {
                 Title and description are required
                 When the form is submitted the movieToAdd
                 variable is updated with form input values*/}
-        <Box component="form"
+        <Box component="form" className="movie-form"
             sx={{
                 '& .MuiTextField-root': { m: 1, width: '15rem' },
                 color: 'text.primary' 
@@ -118,7 +119,7 @@ function AddMovie() {
                     />
                 </FormControl>
             </div>
-            <div>
+            <div className>
                 <FormControl sx={{ m: 1, width: '15rem' }}>
                     <InputLabel id="genre-select-label">Genre</InputLabel>
                     <Select

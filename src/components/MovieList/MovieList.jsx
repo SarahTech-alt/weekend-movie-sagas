@@ -57,7 +57,7 @@ function MovieList() {
             </div>
             {/* Maps over all the items in the movies array
                 that was accessed on page load */}
-                <Grid container justify="center" alignItems="center">
+                <Grid container className="list-section" justify="center" alignItems="center">
             <ImageList 
             gap={15} cols={3}
             sx={{m:1, width:'50%', pl:'25%', pt:'2%'}}>
