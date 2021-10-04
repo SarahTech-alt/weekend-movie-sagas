@@ -3,3 +3,6 @@
     flex-wrap: wrap;
 }
 
+.MovieList {
+    background-image: url(./popcorn.jpg);
+}
