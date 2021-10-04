@@ -36,7 +36,7 @@ function MovieList() {
     }, []);
 
     return (
-        <main className="MovieList">
+        <main>
             {/* Navigation section
             shows user what page they are on and has link
              to take users to add movie page */}
@@ -55,6 +55,7 @@ function MovieList() {
                     </Link>
                 </Breadcrumbs>
             </div>
+            <div className="MovieList">
             {/* Maps over all the items in the movies array
                 that was accessed on page load */}
                 <Grid container className="list-section" justify="center" alignItems="center">
@@ -78,6 +79,7 @@ function MovieList() {
                 ))}
             </ImageList>
             </Grid>
+            </div>
         </main>
     );
 }
