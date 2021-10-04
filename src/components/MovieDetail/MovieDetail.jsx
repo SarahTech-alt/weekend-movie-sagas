@@ -5,6 +5,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
+import './MovieDetail.css'
 
 function MovieDetail() {
     // useSelector allows access to movie details from the store
@@ -45,12 +46,13 @@ function MovieDetail() {
             </div><br />
             {/* Create a grid to put mapped items into */}
             <Grid container 
+            className="movie-detail"
                 spacing={0}
                 direction="column"
                 alignItems="center"
                 justify="center"
                 style={{ minHeight: '100vh' }}>
-                <Card variant="outlined" sx={{ maxWidth: '40rem' }}>
+                <Card variant="outlined" sx={{ maxWidth: '40rem', mt: '5%' }}>
                     <section className="detail">
                         <Grid item>
                             {/* map over selectedMovieDetails reducer
